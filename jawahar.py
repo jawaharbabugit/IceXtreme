@@ -10,3 +10,17 @@ for i in z:
     datac.drop(i,axis=1)
 for i in a: 
     data.drop(i,axis=1)
+    
+    
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+data=pd.read_csv('../input/house-prices-advanced-regression-techniques/train.csv')
+data.dropna(axis=1,thresh=1000,inplace=True)
+narrow=['PoolArea','3SsnPorch','EnclosedPorch','BsmtFinSF2','BsmtHalfBath','KitchenAbvGr','LowQualFinSF','MiscVal','ScreenPorch']
+for i in narrow:
+    data.drop(i,inplace=True,axis=1)
+data.hist(figsize=(20,15),bins=25)
+plt.show()
+
