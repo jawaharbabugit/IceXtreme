@@ -24,3 +24,11 @@ for i in narrow:
 data.hist(figsize=(20,15),bins=25)
 plt.show()
 
+
+dtype=data.dtypes
+mask=(dtype=='object')
+datac=pd.DataFrame(columns=None)
+masked=dtype[mask]
+for i in list(masked.index):
+    datac[i]=data[i]
+    data.drop(i,axis=1,inplace=True)
