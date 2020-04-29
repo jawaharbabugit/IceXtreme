@@ -8,45 +8,20 @@ def wrapper(f):
         return l
     return fun
 
-def wrapper(f):
-    def fun(l):
-    
-        for i in range(len(l)):
-            no=str(l[i])
-            if no.startswith('+91'):
-                no.replace('+91','')
 
-            elif (no.startswith('91') and len(no)>10):
+import operator
+def person_lister(f):
+    def inner(people):
+        # complete the function
+        people.sort(key = operator.itemgetter(2))
+        for i in range(len(people)):
+            yield ' '.join(people[i])
+    return inner
 
-                no.replace('91','')
+@person_lister
+def name_format(person):
+    return ("Mr. " if person[3] == "M" else "Ms. ") + person[0] + " " + person[1]
 
-            elif no.startswith('0'):
-                no.replace('0','')
-
-            first='+91'
-            sec=no[:5]
-            third=no[5:]
-            no=first+' '+sec+' '+third
-            l[i]=no
-        
-
-
-    return f
-
-
-
-number = list()
-N = int(raw_input())
-for i in range(N):
-    number.append(str(raw_input()))
-
-def mobile(function):
-    def input(number):
-            return sorted([function(i) for i in number])
-    return input
-
-@mobile
-def standardize(number):
-	return "+91" + " " + number[-10:-5] + " " + number[-5:]
-
-print '\n'.join(standardize(number))
+if __name__ == '__main__':
+    people = [input().split() for i in range(int(input()))]
+    print(*name_format(people), sep='\n')
