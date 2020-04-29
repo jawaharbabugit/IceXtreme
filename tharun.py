@@ -25,3 +25,15 @@ def name_format(person):
 if __name__ == '__main__':
     people = [input().split() for i in range(int(input()))]
     print(*name_format(people), sep='\n')
+
+    10
+Jake Jake 42 M
+Jake Kevin 57 M
+Jake Michael 91 M
+Kevin Jake 2 M
+Kevin Kevin 44 M
+Kevin Michael 100 M
+Michael Jake 4 M
+Michael Kevin 36 M
+Michael Michael 15 M
+Micheal Micheal 6 M
