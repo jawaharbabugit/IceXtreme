@@ -27,7 +27,7 @@ def wrapper(f):
             sec=no[:5]
             third=no[5:]
             no=first+' '+sec+' '+third
-            a[i]=no
+            l[i]=no
         
 
 
