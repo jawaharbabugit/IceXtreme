@@ -1,54 +1,36 @@
-def wrapper(f):
-    def fun(l):
-        for i in range(len(l)):
-            s = len(l[i])
-            z = s-10
-            l[i] = '+91 ' + l[i][z:z+5] + ' ' + l[i][z+5:]
-        print(*sorted(l), sep='\n')
-        return l
-    return fun
+def dirt(board):
+    l = []
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 'd':
+                l.append((i,j))
+    return l
+def mse(board, r,c,l):
+    m = []
+    for x in l:
+        m.append(((r-x[0])**2) + ((c - x[1])**2))
+    index = m.index(min(m))
+    return l[index]
 
 
-import operator
-def person_lister(f):
-    def inner(people):
-        # complete the function
-        people.sort(key = operator.itemgetter(2))
-        for i in range(len(people)):
-            yield ' '.join(people[i])
-    return inner
 
-@person_lister
-def name_format(person):
-    return ("Mr. " if person[3] == "M" else "Ms. ") + person[0] + " " + person[1]
+def next_move(r, c, board):
+    l = dirt(board)
+    x,y = mse(board, r,c,l)
+    if x ==r and c == y:
+        print("CLEAN")
+    elif x!=r:
+        if x>r:
+            r += 1
+            print("DOWN")
+        elif x<r:
+            r -= 1
+            print("UP")
+    elif c !=y:
+        if c<y:
+            c += 1
+            print("RIGHT")
 
-if __name__ == '__main__':
-    people = [input().split() for i in range(int(input()))]
-    print(*name_format(people), sep='\n')
-
-    10
-Jake Jake 42 M
-Jake Kevin 57 M
-Jake Michael 91 M
-Kevin Jake 2 M
-Kevin Kevin 44 M
-Kevin Michael 100 M
-Michael Jake 4 M
-Michael Kevin 36 M
-Michael Michael 15 M
-Micheal Micheal 6 M
-
-
-Mr. Kevin Jake
-Mr. Michael Jake
-Mr. Micheal Micheal
-Mr. Michael Michael
-Mr. Michael Kevin
-Mr. Jake Jake
-Mr. Kevin Kevin
-Mr. Jake Kevin
-Mr. Jake Michael
-Mr. Kevin Michael
-
-
-https://www.geeksforgeeks.org/complex-numbers-in-python-set-1-introduction/
+        elif c>y:
+            c -= 1
+            print("LEFT")
