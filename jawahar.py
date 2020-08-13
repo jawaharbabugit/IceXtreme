@@ -97,11 +97,12 @@ class node:
         self.next=None
         
 
-
-# Your MyLinkedList object will be instantiated and called as such:
-# obj = MyLinkedList()
-# param_1 = obj.get(index)
-# obj.addAtHead(val)
-# obj.addAtTail(val)
-# obj.addAtIndex(index,val)
-# obj.deleteAtIndex(index)
+UnboundLocalError: local variable 'node' referenced before assignment
+    newnode=node(val)
+Line 53 in addAtTail (Solution.py)
+    __Deserializer__()._deserialize(json.dumps(p[0], escape_forward_slashes=False), "integer"))
+Line 130 in __helper_select_method__ (Solution.py)
+    ret.append(__DriverSolution__().__helper_select_method__(method, params[index], obj))
+Line 182 in _driver (Solution.py)
+    _driver()
+Line 190 in <module> (Solution.py)
